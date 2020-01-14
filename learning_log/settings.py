@@ -23,10 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'zs^wb2j64o9hr1cxa$h)ii*400^mc==iw5nuxlg1&np%_=(3_t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.environ.get('DEBUG') == 'TRUE':
-    DEBUG = True
-elif os.environ.get('DEBUG') == 'FALSE':
-    DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -65,7 +62,7 @@ ROOT_URLCONF = 'learning_log.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,3 +134,8 @@ LOGIN_REDIRECT_URL = 'learning_logs:topics' # 这一行是书里没有的；负�
 # Heroku settings
 import django_heroku
 django_heroku.settings(locals())
+
+if os.environ.get('DEBUG') == 'TRUE':
+    DEBUG = True
+elif os.environ.get('DEBUG') == 'FALSE':
+    DEBUG = False
